@@ -18,27 +18,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: maxim-lobanov/setup-xcode@v1
+      - uses: ./.github/workflows/archive-platform
+        name: Build
         with:
-          xcode-version: ${{ matrix.xcode }}
-
-      - name: Print toolchain versions
-        run: |
-          xcodebuild -version
-          swift --version
-          clang --version
-
-      - name: Build (x86_64-apple-ios-macabi)
-        run: |
-          clang -target x86_64-apple-ios-macabi main.c
-
-      - name: Build (x86_64-apple-ios14.0-macabi)
-        run: |
-          clang -target x86_64-apple-ios14.0-macabi main.c
-
-      - name: Build (x86_64-apple-ios13.0-macabi)
-        run: |
-          clang -target x86_64-apple-ios13.0-macabi main.c
+          platform: ${{ matrix.xcode }}
 
   build-macos-12:
     strategy:
@@ -49,24 +32,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: maxim-lobanov/setup-xcode@v1
+      - uses: ./.github/workflows/archive-platform
+        name: Build
         with:
-          xcode-version: ${{ matrix.xcode }}
-
-      - name: Print toolchain versions
-        run: |
-          xcodebuild -version
-          swift --version
-          clang --version
-
-      - name: Build (x86_64-apple-ios-macabi)
-        run: |
-          clang -target x86_64-apple-ios-macabi main.c
-
-      - name: Build (x86_64-apple-ios14.0-macabi)
-        run: |
-          clang -target x86_64-apple-ios14.0-macabi main.c
-
-      - name: Build (x86_64-apple-ios13.0-macabi)
-        run: |
-          clang -target x86_64-apple-ios13.0-macabi main.c
+          platform: ${{ matrix.xcode }}
