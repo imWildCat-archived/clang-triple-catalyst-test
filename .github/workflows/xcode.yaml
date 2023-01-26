@@ -33,7 +33,7 @@ jobs:
       - uses: ./.github/workflows/clang-build-c
         name: Build
         with:
-          platform: ${{ matrix.xcode }}
+          xcode-version: ${{ matrix.xcode }}
 
   build-macos-11:
     strategy:
